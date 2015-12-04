@@ -1,0 +1,7 @@
+(define (domain task1)
+        (:requirements :typing)
+        (:types object)
+        (:predicates
+                (pic1 ?obj - object)
+                (pic2 ?obj - object)        
+        

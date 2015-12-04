@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="rosbag" type="play" name="rosbag" args="-d 2 /home/himlen/ros_cup.bag" output="screen"/>
+  <node name="extract" pkg="image_view" type="extract_images" respawn="false" output="screen" cwd="ROS_HOME"> 
+    <remap from="image" to="/openni_c2/rgb/image_rect_color"/>
+    
+  </node>
+</launch>

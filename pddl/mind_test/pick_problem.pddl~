@@ -1,0 +1,20 @@
+(define (problem pick)
+        (:domain pick)
+        (:objects obj_teapot - object obj_cup - object p1 - location p2 - location obj_tray -object)
+        (:init
+               
+                (not (relative-place obj_teapot obj_cup))
+                (not (relative-place obj_cup obj_tray))
+                (pic1objstate obj_cup)
+                (handfree)
+                
+                )
+        (:goal 
+               (and
+               
+               (relative-place obj_cup obj_tray)
+               (pic2objstate obj_cup)
+               
+              
+               (handfree))
+               ))

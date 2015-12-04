@@ -1,0 +1,20 @@
+what i saw:
+plane
+cup 
+(state:pic1 after action pic2)
+tray
+(state:pic1 after action pic2 )
+teapot
+(state:unknow)
+other things
+
+
+
+state different 
+
+something change
+多了点东西
+少了点东西
+形状变化
+位置变化（按钮开关），但实际按钮的变化不重要，重要的是它触发的东西
+(操作前后的图像相减)

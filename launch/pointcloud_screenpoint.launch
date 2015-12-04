@@ -1,0 +1,37 @@
+<launch>
+  <arg name="image" default="/camera/rgb" />
+  <arg name="image_type" default="image_rect_color" />
+  <arg name="camera_info" default="$(arg image)/camera_info" />
+  <arg name="points" default="/camera/depth_registered/points" />
+
+  <node name="DepthImage_manager" pkg="nodelet" type="nodelet" args="manager" output="screen"
+        respawn="true"/>
+  
+
+
+ <group>
+   <node name="screenpoint_view" pkg="image_view2" type="image_view2" output="screen" respawn="true">
+     <remap from="image" to="$(arg image)/$(arg image_type)" />
+     <param name="autosize" value="true" />
+   </node>
+   <node name="pointcloud_screenpoint_cup_detect" pkg="jsk_pcl_ros" type="pointcloud_screenpoint"
+         output="screen" clear_params="true" respawn="true" >
+     <remap from="~points" to="$(arg points)" />
+     <remap from="~point" to="$(arg image)/$(arg image_type)/screenpoint" />
+     <remap from="~rect" to="$(arg image)/$(arg image_type)/screenrectangle" />
+     <remap from="~point_array" to="$(arg image)/$(arg image_type)/screenpoint_array" />
+     <rosparam>
+       queue_size: 10
+       crop_size: 10
+       search_size: 16
+       use_rect: false
+       use_point_array: true
+       use_point: true
+       publish_point: true
+     </rosparam>
+     <param name="use_sync" value="true" />
+     <param name="publish_points" value="true" />
+   </node>
+ </group>
+
+</launch>

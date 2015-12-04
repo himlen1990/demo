@@ -1,0 +1,56 @@
+(define (domain pick)
+        (:requirements :typing)
+        (:types object location)
+        (:constants obj_cup - object obj_teapot - object obj_sth - object)
+        (:predicates
+                (pic1objstate ?obj)
+                (pic2objstate ?obj)
+                (grasping ?obj)
+                (handfree)
+                (relative-place ?obj1 ?obj2)
+                (on ?obj - object ?p - location)
+                )
+
+        (:action grasp
+        :parameters (?obj)
+        :precondition (handfree)
+        :effect (and 
+                (grasping ?obj) 
+                (not (handfree))))
+        
+        (:action move-obj-random-place
+        :parameters (?obj - object ?p1 - location ?p2 - location)
+        :precondition (and 
+                      (grasping ?obj)
+                      (on ?obj ?p1))
+        :effect  (on ?obj ?p2))
+         
+        (:action move-obj-relative-place
+        :parameters(?obj1 - object ?obj2 - object)
+        :precondition (and
+                      (not (relative-place ?obj1 ?obj2))
+                      (grasping ?obj1)) 
+        :effect   (relative-place ?obj1 ?obj2))
+
+        (:action find
+        :parameter ()
+        :precondition (not (obj_in_view))
+        :effect (ob))
+
+       
+        (:action ac1_or_pour 
+        :parameters ( )
+        :precondition (and
+                      (grasping obj_teapot)
+                      (relative-place obj_teapot obj_cup)
+                      (pic1objstate obj_cup))
+        :effect (pic2objstate obj_cup))
+        
+        (:action put_down
+        :parameters (?obj)
+        :precondition (and (grasping ?obj) (not (handfree)))
+        :effect 
+                (and
+                (not (grasping ?obj))
+                (handfree)))
+         )

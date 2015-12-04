@@ -1,0 +1,19 @@
+<launch>
+	<node pkg="jsk_perception" type="mask_image_generator" name="mask_generator">
+	      <remap from="~input" to="/camera/rgb/image_raw" />
+	</node>
+	
+	<node pkg="jsk_perception" type="apply_mask_image" name="video_clipper">
+	      <remap from="~input" to="camera/rgb/image_raw" />
+	      <remap from="~input/mask" to="/mask_generator/output" />
+	      <remap from="~output" to="/dataset/roi" />
+	</node>
+	
+	<node pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure" output="screen" >
+	</node>
+	
+	<node pkg="image_view2" type="image_view2" name="image_view2" output="screen" >
+	      <remap from="image" to="/dataset/roi" />
+	</node>
+	
+</launch>

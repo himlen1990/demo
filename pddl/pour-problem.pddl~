@@ -1,0 +1,18 @@
+(define (problem pour-water)
+        (:domain pour)
+        (:objects cup teapot)
+        (:init 
+               (find teapot)
+               (find cup)
+               (on cup table)
+               (on teapot table)
+               (empty cup)
+               (freehand))
+        (:goal
+                (find teapot)
+                (find cup)
+                (on cup table)
+                (not (on teapot table))
+                (not (empty cup))
+                (not (free hand)))
+  )
